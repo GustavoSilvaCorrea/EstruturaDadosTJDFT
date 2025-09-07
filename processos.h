@@ -12,7 +12,7 @@ typedef struct
     int id_tribunal;
     int recurso;
     int id_ultimo_oj;
-    char dt_recebimento[10];
+    char dt_recebimento[11];
     int id_ultima_classe;
     int flag_violencia_domestica;
     int flag_feminicidio;
@@ -21,7 +21,7 @@ typedef struct
     int flag_indigenas;
     int flag_infancia;
     int decisao;
-    int dt_resolvido;
+    char dt_resolvido[11];
     int cnm1;
     int primeirasentm1;
     int baixm1;
@@ -37,14 +37,15 @@ FILE *LerDados(const char *arquivo);
 int numeroProcessos(char *arquivo);
 int id_ultimo_oj(char *arquivo, int id_processo);
 int processoAntigo(char *arquivo);
-int violenciaDomestica(int domestica);
-int feminicidio();
-int ambiental();
-int quilombolas();
-int indigenas();
-int infancia();
-int numeroDias();
-float percentualCumprimentoMeta1();
-char gerarCSV();
+int violenciaDomestica(char *arquivo);
+int feminicidio(char *arquivo);
+int ambiental(char *arquivo);
+int quilombolas(char *arquivo);
+int indigenas(char *arquivo);
+int infancia(char *arquivo);
+int dias_totais(int a, int m, int d);
+int numeroDias(char *arquivo, int id_processo);
+float percentualCumprimentoMeta1(char *arquivo);
+void gerarCSV(char *entrada, char *saida);
 
 #endif
