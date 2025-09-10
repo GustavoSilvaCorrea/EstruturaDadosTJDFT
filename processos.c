@@ -301,6 +301,10 @@ float percentualCumprimentoMeta1(char *arquivo)
     FILE *fp = LerDados(arquivo);
 
     char linha[3000];
+    int cnm1 = 0;
+    int julgadom1 = 0;
+    int desm1 = 0;
+    int susm1 = 0;
     Processos p;
 
     fgets(linha, sizeof(linha), fp); // pula cabeçalho
@@ -308,12 +312,33 @@ float percentualCumprimentoMeta1(char *arquivo)
     while (fgets(linha, sizeof(linha), fp))
     {
         if (sscanf(linha,
-                   "%*d;%*d;%*[^;];%*[^;];%*[^;];%*[^;];%*d;%*d;%*d;%*[^;];%*d;%*d;%*d;%*d;%*d;%*d;%*d;%*d;%d;%*d;%*d;%*d;%*d;%d;%d",
+                   "%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];"
+                   "%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%*[^;];%d;%*[^;];%*[^;];%*[^;];%*[^;];%d;%d;%d",
                    &p.cnm1, &p.julgadom1, &p.desm1, &p.susm1) == 4)
         {
-            printf("%d", p.cnm1);
+            if (p.cnm1 == 1)
+            {
+                cnm1++;
+            }
+            if (p.julgadom1 == 1)
+            {
+                julgadom1++;
+            }
+            if (p.desm1 == 1)
+            {
+                desm1++;
+            }
+            if (p.susm1 == 1)
+            {
+                susm1++;
+            }
         }
     }
+    if (cnm1 + desm1 - susm1 == 0)
+        return 0.0f;
+
+    float meta1 = ((float)julgadom1 / (cnm1 + desm1 - susm1)) * 100.0f;
+    return meta1;
 }
 void gerarCSV(char *entrada, char *saida)
 {
