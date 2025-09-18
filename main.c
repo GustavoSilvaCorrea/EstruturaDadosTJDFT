@@ -6,7 +6,6 @@
 
 int main(){
     clock_t T0 = clock();
-    
     int QtdProcessos = numeroProcessos("TJDFT_filtrado.csv");
     if (QtdProcessos >= 0) {
         printf("Quantidade de Processos existentes: %d\n\n", QtdProcessos);
@@ -32,11 +31,11 @@ int main(){
     
 
     int qtdquilombolas = quilombolas("TJDFT_filtrado.csv");
-    printf("Quantidade de casos de crimes com quilombolas %d\n\n", qtdquilombolas);
+    printf("Quantidade de crimes com quilombolas: %d\n\n", qtdquilombolas);
     
 
     int qtdindigenas = indigenas("TJDFT_filtrado.csv");
-    printf("Quantidade de casos de crimes com indigenas %d\n\n", qtdindigenas);
+    printf("Quantidade de crimes com indigenas: %d\n\n", qtdindigenas);
     
 
     int qtdinfancia = infancia("TJDFT_filtrado.csv");
@@ -48,9 +47,8 @@ int main(){
     printf("A porcentagem da meta1: %.2f%%\n\n", meta1);
 
     gerarCSV("TJDFT_filtrado.csv", "processos_meta1.csv");
-
     clock_t TF = clock();
-    printf("Tempo de Execução: %f segundos\n", (double)(TF - T0)/CLOCKS_PER_SEC);
+    printf("\n\nTempo de Execucao: %.2f segundos\n", (double)(TF - T0)/CLOCKS_PER_SEC);
     return 0;
 
 }
